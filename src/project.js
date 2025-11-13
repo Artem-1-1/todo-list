@@ -27,7 +27,8 @@ class Todo{
     const date = document.createElement('span');
     date.textContent = `  | Added on: ${this.time}`;
 
-    todoContainer.appendChild(title, description, priority, date)
+    todoContainer.append(title, description, priority, date);
+    return todoContainer;
   }
 }
 

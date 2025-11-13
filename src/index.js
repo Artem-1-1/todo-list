@@ -36,7 +36,7 @@ function renderProjects() {
     sideBar.appendChild(projectContainer);
 
     projectName.addEventListener('click', () => {
-      renderProjectContent(projectName);
+      renderProjectContent(name);
     });
   });
 }
@@ -47,7 +47,7 @@ function renderProjectContent(projectName) {
   const header = document.createElement('h2');
   header.textContent = `Project: ${projectName}`;
 
-  const addTodoBtn = document.createElement(button);
+  const addTodoBtn = document.createElement('button');
   addTodoBtn.textContent = 'Add Task';
   addTodoBtn.id = 'addTodo';
 
@@ -61,15 +61,15 @@ function renderProjectContent(projectName) {
 
     if (title) {
       const todo = new Todo(title, description, priority);
-      todoContainer.appendChild(todo.render());
+      todoContainer.appendChild(todo.renderTodo());
     }
   });
 
   const project = storage.getAllProjects();
   const todos = project[projectName] || [];
   todos.forEach(t => {
-    const todo = new(t.title, t.description, t.priority);
-    todoContainer.appendChild(todo.render());
+    const todo = new Todo(t.title, t.description, t.priority);
+    todoContainer.appendChild(todo.renderTodo());
   });
 
   content.append(header, addTodoBtn, todoContainer);
